@@ -22,6 +22,10 @@ const userSchema = new Schema({
   division: String,
   district: String,
   password: String,
+  verified: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model("UserList", userSchema);

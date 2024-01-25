@@ -2,6 +2,8 @@ const emailValidation = require("../helpers/emailValidation");
 const bcrypt = require("bcrypt");
 const UserList = require("../models/userSchema");
 const sentEmail = require("../helpers/sentEmail");
+const emailVerificationTemplate = require("../helpers/emailVerificationTemplate");
+var jwt = require('jsonwebtoken');
 
 async function registrationController(req, res) {
   const {
@@ -51,7 +53,9 @@ async function registrationController(req, res) {
       password: hash, //hash password with bcrypt
     });
     users.save();
-    sentEmail(email, "EMAIL VERIFICATION");
+    var token = jwt.sign({ email }, 'sk');
+
+    sentEmail(email, "EMAIL VERIFICATION", emailVerificationTemplate(token));
   });
   res.json(req.body);
 }
