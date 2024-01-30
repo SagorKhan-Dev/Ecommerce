@@ -1,7 +1,9 @@
+const bcrypt = require('bcrypt');
+
 const emailValidation = require("../helpers/emailValidation");
 const UserList = require("../models/userSchema");
 
-async function loginController() {
+async function loginController(req,res) {
   const { email, password } = req.body;
   //In case an email is not provided:
   if (!email) {
@@ -17,7 +19,13 @@ async function loginController() {
   const existingEmail = await UserList.find({ email });
   // console.log(existingEmail, "email")
   if (existingEmail.length > 0) {
-    
+    bcrypt.compare(password, existingEmail[0].password).then(function(result) {
+      if(result){
+        res.json({success: "Login Successful"})
+      }else{
+        res.json({error: "Password not match"})
+      }
+  });
   }
 }
 
