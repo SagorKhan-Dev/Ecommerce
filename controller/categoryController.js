@@ -85,7 +85,7 @@ async function createSubCategoryStatusController(req, res) {
 
 // FIND ALL CATEGORY STATUS IN FRONTEND
 async function getAllCategoryController(req, res) {
-  const category = await CategoryList.find({});
+  const category = await CategoryList.find({}).populate("subcategory");
   res.send(category);
 }
 async function getAllSubCategoryController(req, res) {
