@@ -14,7 +14,7 @@ const categorySchema = new Schema({
         type: Boolean,
         default: false
     },
-    subCategory: [
+    subcategory: [
         {
             type: Schema.Types.ObjectId,
             ref: "SubCategoryList"
