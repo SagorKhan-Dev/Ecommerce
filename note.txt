@@ -1,0 +1,1 @@
+updated category and sub category status, adding subcategory to main category, sending category and subcategory data to frontend (tofix: update subcategory)
