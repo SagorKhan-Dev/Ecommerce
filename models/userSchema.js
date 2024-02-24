@@ -14,18 +14,39 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  telephone: String,
-  addressOne: String,
+  telephone: {
+    type: String,
+    required: true,
+  },
+  addressOne: {
+    type: String,
+    required: true,
+  },
   addressTwo: String,
   city: String,
   postCode: String,
   division: String,
   district: String,
-  password: String,
+  password: {
+    type: String,
+    required: true,
+  },
   verified: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+  role: {
+    type: String,
+    default: "user",
+    enum: ["user", "admin", "merchant"],
+  },
+  created: {
+    type: Date,
+    default: new Date(),
+  },
+  updated: {
+    type: Date,
+  },
 });
 
 module.exports = mongoose.model("UserList", userSchema);

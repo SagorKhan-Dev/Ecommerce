@@ -29,7 +29,7 @@ const SubCategorySchema = new Schema({
   },
   updated: {
     type: Date,
-  },
+  }
 });
 
 module.exports = mongoose.model("SubCategoryList", SubCategorySchema);
